@@ -1,7 +1,7 @@
 // Specify a function to execute when the DOM is fully loaded
 $(document).ready(function () {
   const amenities = {};
-  $('input[type=checkboxclear]').click(function () {
+  $('input[type=checkbox]').click(function () {
     // Iterate over a jQuery object, executing a function for each matched element
     $(this).each(function () {
       if (this.checked) {
