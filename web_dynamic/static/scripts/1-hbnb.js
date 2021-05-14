@@ -1,20 +1,19 @@
-// Specify a function to execute when the DOM is fully loaded
+// specify a function to execute when the DOM is fully loaded
 $(document).ready(function () {
   const amenities = {};
   $('input[type=checkbox]').click(function () {
-    // Iterate over a jQuery object, executing a function for each matched element
+    // iterate over a jQuery object, executing a function for each matched element
     $(this).each(function () {
+      // a state that tells us if a checkbox is checked or not
       if (this.checked) {
-        amenities[$(this).data('id')] = $(this).data('name');
+        // get the value of an attribute for the first element in the set of matched elements
+        amenities[$(this).attr('data-id')] = $(this).attr('data-name');
       } else {
-        delete amenities[$(this).data('id')];
+        // delete object['property']
+        delete amenities[$(this).attr('data-id')];
       }
     });
-    // Method returns an array of a given object's own property values
-    if (Object.values(amenities).length > 0) {
-      $('.amenities h4').text(Object.values(amenities).join(', '));}
-    else {
-      $('.amenities h4').html('&nbsp'); 
-    }  
+    // returns an array of a given object's own property values
+    $('.amenities h4').text(Object.values(amenities));
   });
 });
