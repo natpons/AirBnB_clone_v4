@@ -1,19 +1,16 @@
 $(document).ready(function () {
-    const amenities = {};
-    $('input[type=checkbox]').click(function () {
-      $(this).each(function () {
-        if (this.checked) {
-          amenities[$(this).attr('data-id')] = $(this).attr('data-name');
-        } else {
-          delete amenities[$(this).attr('data-id')];
-        }
-      });
-      $('.amenities h4').text(Object.values(amenities));
+  const amenities = {};
+  $('input[type=checkbox]').click(function () {
+    $(this).each(function () {
+      if (this.checked) {
+        amenities[$(this).attr('data-id')] = $(this).attr('data-name');
+      } else {
+        delete amenities[$(this).attr('data-id')];
+      }
     });
+    $('.amenities h4').text(Object.values(amenities));
   });
-  
-  
-$(function () {
+
   $.get('http://0.0.0.0:5001/api/v1/status/', function (data, textStatus) {
     if (textStatus === 'success') {
       if (data.status === 'OK') {
@@ -24,9 +21,7 @@ $(function () {
     }
   }
   );
-});
-  
-$(document).ready(function () {
+
   $.ajax({
     type: 'POST',
     url: 'http://0.0.0.0:5001/api/v1/places_search',
@@ -36,21 +31,19 @@ $(document).ready(function () {
     success: function (data) {
       for (let i = 0; i < data.length; i++) {
         const place = data[i];
-        const str = '<article><h2>'
-          + place.name
-          + '</h2><div class="price_by_night"><p>$'
-          + place.price_by_night + '</p></div><div class="information"><div class="max_guest"><div class="guest_image"></div><p>'
-          + place.max_guest + '</p></div><div class="number_rooms"><div class="bed_image"></div><p>'
-          + place.number_rooms + '</p></div><div class="number_bathrooms"><div class="bath_image"></div><p>'
-          + place.number_bathrooms + '</p></div></div><div class="description"><p>'
-          + place.description + '</p></div></article>';
+        const str = '<article><h2>' +
+          place.name +
+          '</h2><div class="price_by_night"><p>$' +
+          place.price_by_night + '</p></div><div class="information"><div class="max_guest"><div class="guest_image"></div><p>' +
+          place.max_guest + '</p></div><div class="number_rooms"><div class="bed_image"></div><p>' +
+          place.number_rooms + '</p></div><div class="number_bathrooms"><div class="bath_image"></div><p>' +
+          place.number_bathrooms + '</p></div></div><div class="description"><p>' +
+          place.description + '</p></div></article>';
         $('section.places').append(str);
       }
     }
   });
-});
 
-$(document).ready(function () {
   $('section.filters > button').click(function () {
     $('section.places > article').remove();
     $.ajax({
@@ -62,14 +55,14 @@ $(document).ready(function () {
       success: function (data) {
         for (let i = 0; i < data.length; i++) {
           const place = data[i];
-          const str = '<article><h2>'
-            + place.name
-            + '</h2><div class="price_by_night"><p>$'
-            + place.price_by_night + '</p></div><div class="information"><div class="max_guest"><div class="guest_image"></div><p>'
-            + place.max_guest + '</p></div><div class="number_rooms"><div class="bed_image"></div><p>'
-            + place.number_rooms + '</p></div><div class="number_bathrooms"><div class="bath_image"></div><p>'
-            + place.number_bathrooms + '</p></div></div><div class="description"><p>'
-            + place.description + '</p></div></article>';
+          const str = '<article><h2>' +
+            place.name +
+            '</h2><div class="price_by_night"><p>$' +
+            place.price_by_night + '</p></div><div class="information"><div class="max_guest"><div class="guest_image"></div><p>' +
+            place.max_guest + '</p></div><div class="number_rooms"><div class="bed_image"></div><p>' +
+            place.number_rooms + '</p></div><div class="number_bathrooms"><div class="bath_image"></div><p>' +
+            place.number_bathrooms + '</p></div></div><div class="description"><p>' +
+            place.description + '</p></div></article>';
           $('section.places').append(str);
         }
       }
